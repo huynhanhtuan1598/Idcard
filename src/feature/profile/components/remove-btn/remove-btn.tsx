@@ -25,9 +25,7 @@ const RemoveBtn = ({ item, toggle }: Props) => {
 
     const onClick = () => {
         removeInfo({
-            variables: {
-                idContactItem: item._id,
-            },
+           
         });
     };
     return (

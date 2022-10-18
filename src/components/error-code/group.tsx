@@ -1,4 +1,4 @@
-import { IErrorCode } from '../error-code/types';
+import { IErrorCode } from './types';
 import React from 'react'
 
 export const GROUP_NOT_EXIST: IErrorCode = {

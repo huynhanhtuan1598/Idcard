@@ -1,10 +1,11 @@
-import  IErrorCode  from './types';
+// import  { IErrorCode }  from './types';
+import {IErrorCode} from '../../../src/custom';
 
 export const AUTH_CODE_EXIST: IErrorCode = {
     code: 'AUTH_CODE_EXIST',
     message: {
         vi: 'Mã code đã tồn tại',
-        en: 'Code is exist',
+        en: 'Code is exist',    
     },
 };
 

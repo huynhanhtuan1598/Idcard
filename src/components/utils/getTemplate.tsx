@@ -1,7 +1,7 @@
 import { grey } from '@mui/material/colors';
 import { ContactItem } from '../../feature/profile/components/contact-item/contact-item';
 // import { hexToRGBA } from '.';
-// import { IThemeColorTemplate } from '../feature/admin/types';
+import  IThemeColorTemplate  from '../feature/admin/types';
 // import { ContactItem } from '../feature/profile/components/contact-item';
 import { hexToRGBA } from './hexToRgba';
 
