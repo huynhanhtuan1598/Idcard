@@ -1,5 +1,7 @@
-import vietinbank from '../assets/vietin.svg';
-import vietcombank from '../assets/vietcombank.svg';
+// import vietinbank from '../assets/vietin.svg';
+import vietinbank from './img/vietcom.png';
+// import vietcombank from '../assets/vietcombank.svg';
+import vietcombank from './img/vietcom.png';
 
 export interface IBankLists {
   [key: string]: {

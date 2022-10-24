@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { AppBar } from '../../../components/appbar/appbar';
 import { Back } from '../../../components/appbar/back';
 import { useAuth } from '../../../components/context/auth';
-import { ProviderImagesUser } from '../../../components/context/images';
+// import { ProviderImagesUser } from '../../../components/context/images';
 import { ImageS3, useChangeConfigThemeMutation } from '../../../components/generated/graphql';
 import { useMessage } from '../../../components/message/notification';
 import { ListImages } from '../components/edit-theme/list-images';
@@ -57,8 +57,9 @@ const BgImage = () => {
     };
 
     return (
-        <ProviderImagesUser>
-            <AppBar
+        // <ProviderImagesUser>
+        <div>
+                <AppBar
                 title={t('appearance.bgImage')}
                 leftContent={<Back to="/appearance" />}
             />
@@ -69,7 +70,9 @@ const BgImage = () => {
                     selectBg={handelSelectBg}
                 />
             </Container>
-        </ProviderImagesUser>
+        </div>
+            
+        // </ProviderImagesUser>
     );
 };
 

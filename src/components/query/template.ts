@@ -33,14 +33,14 @@ export const QUERY_GET_ALL_TEMPLATES_USER = gql`
   }
 `;
 
-export const QUERY_GET_ALL_TEMPLATES_CUSTOM = gql`
-  query GetTemplateCustom($textSearch: String) {
-    getTemplateCustom(textSearch: $textSearch) {
-      _id
-      title
-    }
-  }
-`;
+// export const QUERY_GET_ALL_TEMPLATES_CUSTOM = gql`
+//   query GetTemplateCustom($textSearch: String) {
+//     getTemplateCustom(textSearch: $textSearch) {
+//       _id
+//       title
+//     }
+//   }
+// `;
 
 export const QUERY_GET_TEMPLATE = gql`
   query GeTemplate($id: String) {

@@ -1,4 +1,6 @@
-import phone from '../assets/phone.svg';
+// import phone from '../assets/phone.svg';
+import phone from './img/phone.png';
+
 
 export const phoneList: {
     [key: string]: {

@@ -7,7 +7,7 @@ import { AppBar } from "../../../../components/appbar/appbar";
 import { Back } from "../../../../components/appbar/back";
 import { AvatarEdit } from "../../../../components/avatar-edit/avatar-edit";
 import { useAuth } from "../../../../components/context/auth";
-import { useImagesUser } from "../../../../components/context/images";
+// import { useImagesUser } from "../../../../components/context/images";
 import { useCreateImageS3Mutation, useUpdateUserInfoMutation } from "../../../../components/generated/graphql";
 
 const SIZE_AVATAR = 60;
@@ -45,7 +45,7 @@ export interface IFileUpload {
 const AvatarUpload = () => {
 	const { t } = useTranslation('editAvatar');
 	const { user, updateInfo } = useAuth();
-	const { addImage } = useImagesUser();
+	// const { addImage } = useImagesUser();
 	const [open, setOpen] = useState<boolean>(false);
 	const classes = useStyles()
 	const [createImageS3, { loading }] = useCreateImageS3Mutation();
@@ -74,23 +74,23 @@ const AvatarUpload = () => {
 			});
 
 			const image: any = response.data?.createImageS3.image; // TODO: fix type
-			if (image) {
-				addImage(image);
+			// if (image) {
+			// 	addImage(image);
 
-				updateInfo({
-					...user,
-					avatarS3: image,
-				});
+			// 	updateInfo({
+			// 		...user,
+			// 		avatarS3: image,
+			// 	});
 
-				updateUserInfo({
-					variables: {
-						updateUserInfoInput: { avatarS3: image._id },
-					},
-					// refetchQueries: [{ query: QUERY_GET_IMAGES_S3 }],
-				});
+			// 	updateUserInfo({
+			// 		variables: {
+			// 			updateUserInfoInput: { avatarS3: image._id },
+			// 		},
+			// 		// refetchQueries: [{ query: QUERY_GET_IMAGES_S3 }],
+			// 	});
 
-				toggle();
-			}
+			// 	toggle();
+			// }
 		} catch (error) { }
 	};
 

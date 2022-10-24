@@ -9,7 +9,6 @@ import React, {
 import { Loading } from '../loading/loading';
 import { ImageS3, useGetImagesS3Query } from '../generated/graphql';
 import { useAuth } from './auth';
-import { IAction } from './interface';
 
 interface IState {
     loading: boolean;
@@ -27,23 +26,23 @@ const types = {
     ADD_IMAGE: 'IMAGES/ADD_IMAGE',
 };
 
-const reducer = (state: IState, action: IAction): IState => {
-    switch (action.type) {
-        case types.LOADING:
-            return { ...state, loading: true };
+// const reducer = (state: IState, action: ImpactLocation): IState => {
+//     switch (action.type) {
+//         case types.LOADING:
+//             return { ...state, loading: true };
 
-        case types.LOAD_IMAGE_DONE:
-            return { ...state, images: action.payload, loading: false };
+//         case types.LOAD_IMAGE_DONE:
+//             return { ...state, images: action.payload, loading: false };
 
-        case types.ADD_IMAGE:
-            return {
-                ...state,
-                images: [...state.images, action.payload],
-            };
-        default:
-            return state;
-    }
-};
+//         case types.ADD_IMAGE:
+//             return {
+//                 ...state,
+//                 images: [...state.images, action.payload],
+//             };
+//         default:
+//             return state;
+//     }
+// };
 
 interface IContext {
     state: IState;
@@ -63,49 +62,49 @@ interface Props {
     children: ReactNode;
 }
 
-const ProviderImagesUser = ({ children }: Props) => {
-    const { user, loading: loadingAuth } = useAuth();
-    const [state, dispatch] = useReducer(reducer, initialState);
+// const ProviderImagesUser = ({ children }: Props) => {
+//     const { user, loading: loadingAuth } = useAuth();
+//     const [state, dispatch] = useReducer(reducer, initialState);
 
-    const { loading, refetch } = useGetImagesS3Query({
-        onError(error) {
-            console.log(error);
-            dispatch({
-                type: types.LOAD_IMAGE_DONE,
-                payload: [],
-            });
-        },
-        onCompleted(data) {
-            if (data.getImagesS3.success) {
-                dispatch({
-                    type: types.LOAD_IMAGE_DONE,
-                    payload: data.getImagesS3.images,
-                });
-            }
-        },
-    });
+//     const { loading, refetch } = useGetImagesS3Query({
+//         onError(error) {
+//             console.log(error);
+//             dispatch({
+//                 type: types.LOAD_IMAGE_DONE,
+//                 payload: [],
+//             });
+//         },
+//         onCompleted(data) {
+//             if (data.getImagesS3.success) {
+//                 dispatch({
+//                     type: types.LOAD_IMAGE_DONE,
+//                     payload: data.getImagesS3.images,
+//                 });
+//             }
+//         },
+//     });
 
-    useEffect(() => {
-        if (user) {
-            refetch();
-        }
-    }, [user]);
+//     useEffect(() => {
+//         if (user) {
+//             refetch();
+//         }
+//     }, [user]);
 
-    const value = useMemo(
-        () => ({ state, dispatch, refetchImagesUser: refetch }),
-        [state, dispatch, refetch]
-    );
+//     const value = useMemo(
+//         () => ({ state, dispatch, refetchImagesUser: refetch }),
+//         [state, dispatch, refetch]
+//     );
 
-    if (loadingAuth || loading) {
-        return <Loading />;
-    }
+//     if (loadingAuth || loading) {
+//         return <Loading />;
+//     }
 
-    // if (error) {
-    //     return <></>;
-    // }
+//     // if (error) {
+//     //     return <></>;
+//     // }
 
-    return <Context.Provider value={value}>{children}</Context.Provider>;
-};
+//     return <Context.Provider value={value}>{children}</Context.Provider>;
+// };
 
 const useImagesUser = () => {
     const { state, dispatch, refetchImagesUser } = useContext(Context);
@@ -132,4 +131,4 @@ const useImagesUser = () => {
     };
 };
 
-export { ProviderImagesUser, useImagesUser };
+// export { ProviderImagesUser, useImagesUser };

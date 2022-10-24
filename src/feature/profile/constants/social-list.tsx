@@ -3,6 +3,7 @@ import baelive from '../assets/baelive.svg';
 import behance from '../assets/behance.svg';
 import facebook from '../assets/facebook.svg';
 import { iconsSocial } from '../assets/icon';
+import Behance from '../assets/Behance.png';
 import linkedin from '../assets/in.svg';
 import instagram from '../assets/instagram.svg';
 import skype from '../assets/skype.svg';
@@ -235,8 +236,8 @@ export const socialLists: ISocialLists = {
         name: 'Evernote',
     },
 
-    behance: {
-        icon: behance,
+    Behance: {
+        icon: Behance,
         logo: <SvgIcon>{iconsSocial.behance}</SvgIcon>,
         value: 'behance',
         color: '#00A82D',

@@ -31,7 +31,7 @@ import {
     // ISocialLists,
     // socialLists,
 } from '../../constants/bank-list';
-import {ISocialLists, socialLists } from '../../constants/social-list';
+// import {ISocialLists, socialLists } from '../../constants/social-list';
 
 const useStyles = makeStyles((theme: Theme) => ({
     wrap: { background: '#eee', borderRadius: 10, cursor: 'pointer' },
@@ -81,7 +81,7 @@ export enum ETypeSelect {
 
 interface IListData {
     type: ETypeSelect;
-    lists: ISocialLists | IBankLists;
+    // lists: ISocialLists | IBankLists;
     label: string;
     placeholder: string;
 }
@@ -113,7 +113,7 @@ const SelectBankOrSocial = forwardRef<HTMLInputElement, Props>(
                 },
                 [ETypeSelect.SOCIAL]: {
                     type: ETypeSelect.SOCIAL,
-                    lists: socialLists,
+                    // lists: socialLists,
                     label: t('choose_social'),
                     placeholder: t('search_social'),
                 },
@@ -130,7 +130,7 @@ const SelectBankOrSocial = forwardRef<HTMLInputElement, Props>(
         const [name, setName] = useState<string>();
         const [textSearch, setTextSearch] = useState<string>('');
         const [loading, setLoading] = useState<boolean>(false);
-        const [lists, setLists] = useState(() => getSortList(typeLists.lists));
+        // const [lists, setLists] = useState(() => getSortList(typeLists.lists));
 
         const changeTextSearch = debounce((text: string) => {
             setTextSearch(text);
@@ -143,29 +143,29 @@ const SelectBankOrSocial = forwardRef<HTMLInputElement, Props>(
         const handleCloseModal = () => {
             setOpen(false);
             setTextSearch('');
-            setLists(Object.values(typeLists.lists));
+            // setLists(Object.values(typeLists.lists));
         };
 
-        const itemListExist = name ? typeLists.lists[name] : undefined;
+        // const itemListExist = name ? typeLists.lists[name] : undefined;
 
-        const newLists = useMemo(() => {
-            if (textSearch.length === 0) {
-                return lists;
-            }
+        // const newLists = useMemo(() => {
+        //     if (textSearch.length === 0) {
+        //         return //lists;
+        //     }
 
-            const textSearchFormat = textSearch.trim();
+        //     const textSearchFormat = textSearch.trim();
 
-            return lists.filter((item) => {
-                if (!item.shortname) {
-                    return getIndexString(item.name, textSearchFormat) >= 0;
-                }
+        //     return lists.filter((item) => {
+        //         if (!item.shortname) {
+        //             return getIndexString(item.name, textSearchFormat) >= 0;
+        //         }
 
-                return (
-                    getIndexString(item.shortname, textSearchFormat) >= 0 ||
-                    getIndexString(item.name, textSearchFormat) >= 0
-                );
-            });
-        }, [textSearch, lists]);
+        //         return (
+        //             getIndexString(item.shortname, textSearchFormat) >= 0 ||
+        //             getIndexString(item.name, textSearchFormat) >= 0
+        //         );
+        //     });
+        // }, [textSearch, lists]);
 
         return (
             <>
@@ -179,7 +179,7 @@ const SelectBankOrSocial = forwardRef<HTMLInputElement, Props>(
                     <Grid item xs>
                         <div className={classes.label}>{typeLists.label}</div>
                         <input
-                            value={get(itemListExist, 'name')}
+                            // value={get(itemListExist, 'name')}
                             className={classes.input}
                             {...props}
                             autoFocus
@@ -258,7 +258,7 @@ const SelectBankOrSocial = forwardRef<HTMLInputElement, Props>(
                                     >
                                         {loading && <CircularProgress />}
 
-                                        <List component="nav">
+                                        {/* <List component="nav">
                                             {map(newLists, (item) => {
                                                 const handleSelect = () => {
                                                     setName(item.value);
@@ -304,7 +304,7 @@ const SelectBankOrSocial = forwardRef<HTMLInputElement, Props>(
                                                     </ListItem>
                                                 );
                                             })}
-                                        </List>
+                                        </List> */}
                                     </Box>
                                 </Container>
                             </Box>

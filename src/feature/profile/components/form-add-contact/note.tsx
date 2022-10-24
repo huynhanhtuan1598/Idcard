@@ -23,7 +23,6 @@ const Note = ({ socialType }: Props) => {
     const { t } = useTranslation();
     const classes = useStyles();
     const note = get(socialLists, [socialType, 'note']) || get(ecommerceList, [socialType, 'note']);
-
     if (!note) {
         return <></>;
     }

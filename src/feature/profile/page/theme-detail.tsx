@@ -15,7 +15,7 @@ import { AppBar } from '../../../components/appbar/appbar';
 import { Back } from '../../../components/appbar/back';
 import { Button } from '../../../components/button/button';
 import { useAuth } from '../../../components/context/auth';
-import { ProviderImagesUser } from '../../../components/context/images';
+// import { ProviderImagesUser } from '../../../components/context/images';
 import { useTemplateDetailQuery } from '../../../components/generated/graphql';
 import { Loading } from '../../../components/loading/loading';
 import { TemplateRender } from '../../../components/template-render/template-render';
@@ -147,7 +147,7 @@ function ThemeDetail() {
     };
 
     return (
-        <ProviderImagesUser>
+        // <ProviderImagesUser>
             <>
                 <AppBar
                     leftContent={<Back to="/themes" />}
@@ -196,7 +196,7 @@ function ThemeDetail() {
                     </Box>
                 </Container>
             </>
-        </ProviderImagesUser>
+        // </ProviderImagesUser>
     );
 }
 

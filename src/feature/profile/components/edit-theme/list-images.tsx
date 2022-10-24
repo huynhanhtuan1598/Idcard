@@ -2,7 +2,7 @@ import { Backdrop } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import get from 'lodash/get';
 import { useAuth } from '../../../../components/context/auth';
-import { useImagesUser } from '../../../../components/context/images';
+// import { useImagesUser } from '../../../../components/context/images';
 import { ImageS3, useCreateImageS3Mutation } from '../../../../components/generated/graphql';
 import { Spinner } from '../../../../components/spinner/spinner';
 import { UploadImage } from '../../../admin/components/select-background/upload-image';
@@ -26,7 +26,7 @@ interface Props {
 function ListImages({ selectBg, loading = false, imageSelectId }: Props) {
     const classes = useStyle();
     const { user } = useAuth();
-    const { images, refetchImagesUser } = useImagesUser();
+    // const { images, refetchImagesUser } = useImagesUser();
 
     const [createImageS3, { loading: loadingUpload }] =
         useCreateImageS3Mutation();
@@ -40,7 +40,7 @@ function ListImages({ selectBg, loading = false, imageSelectId }: Props) {
                 },
             },
         }).then(() => {
-            refetchImagesUser();
+            // refetchImagesUser();
         });
     };
 
@@ -61,13 +61,13 @@ function ListImages({ selectBg, loading = false, imageSelectId }: Props) {
                     style={{ width: '100%', height: '100%' }}
                 />
 
-                {images.map((image) => (
+                {/* {images.map((image) => (
                     <ThumbBg
                         selected={image._id === imageSelectId}
                         image={image}
                         onSelect={selectBg}
                     />
-                ))}
+                ))} */}
 
                 {loadingUpload && <Spinner />}
             </div>

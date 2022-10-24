@@ -1,6 +1,7 @@
 import { SvgIcon } from '@mui/material';
 import React from 'react';
-import email from '../assets/mail.svg';
+// import email from '../../../feature/profile/assets/';
+import email from './img/free-mail-icon-142-thumb.png'
 
 export const emailList: {
     [key: string]: {

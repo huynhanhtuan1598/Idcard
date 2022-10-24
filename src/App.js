@@ -33,8 +33,8 @@ import { Message } from './components/message/notification';
 
 import {LanguageContext} from './components/context/language';
 import {NotificationProvider} from './components/context/notification';
-import {ProviderAuthContext} from './components/context/auth';
-import {ProviderImagesUser} from './components/context/images';
+// import {ProviderAuthContext} from './components/context/auth';
+// import {ProviderImagesUser} from './components/context/images';
 
 import { Routers } from './components/routers/routers';
 
@@ -64,13 +64,13 @@ function App() {
                 <Message>
                     <LanguageContext>
                         <ApolloProvider client={client}>
-                            <ProviderAuthContext>
+                            {/* <ProviderAuthContext> */}
                                 <NotificationProvider>
-                                    <ProviderImagesUser>
+                                    {/* <ProviderImagesUser> */}
                                         <Routers />
-                                    </ProviderImagesUser>
+                                    {/* </ProviderImagesUser> */}
                                 </NotificationProvider>
-                            </ProviderAuthContext>
+                            {/* </ProviderAuthContext> */}
                         </ApolloProvider>
                     </LanguageContext>
                 </Message>

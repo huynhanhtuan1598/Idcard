@@ -1,7 +1,7 @@
 import { ErrorMessage } from '@hookform/error-message';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Grid } from '@mui/material';
-import { useForm } from 'react-hook-form';
+import { get, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import * as yup from 'yup';
 import { useAuth } from '../../../../components/context/auth';
@@ -9,7 +9,7 @@ import { useChangeLanguage } from '../../../../components/context/language';
 import { LoginInput, useLoginMutation } from '../../../../components/generated/graphql';
 import { useMessage } from '../../../../components/message/notification';
 import { checkSpacingInString } from '../../../../components/utils/checkSpacingInString';
-import { getErrorMessage } from '../../../../components/utils/getMessageError';
+// import { getErrorMessage } from '../../../../components/utils/getMessageError';
 import { Button } from '../button/button';
 import { ErrorText } from '../error-text/error-text';
 import { InputPassword } from '../input-password/input-password';
@@ -42,12 +42,12 @@ const LoginForm = () => {
 
     const [login, { loading }] = useLoginMutation({
         onError() {
-            const errorText = getErrorMessage(undefined, t('form.error_login'));
+            const errorText = get(undefined, t('form.error_login'));
             message(errorText, { variant: 'error' });
         },
         onCompleted(data) {
             if (!data.login?.success) {
-                const errorText = getErrorMessage(
+                const errorText = get(
                     data?.login?.message,
                     t('form.error_login')
                 );

@@ -115,7 +115,7 @@ const FormSocial = () => {
                     }}
                 />
 
-                {watchSocial && <Note socialType={watchSocial} />}
+                {/* {watchSocial && <Note socialType={watchSocial} />} */}
             </FormControl>
 
             <FormControl margin="normal" fullWidth>

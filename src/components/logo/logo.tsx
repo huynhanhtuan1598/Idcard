@@ -1,6 +1,6 @@
 import { makeStyles } from '@mui/styles'; 
 import React from 'react';
-import logo from './vipid-logo.svg';
+import logo from './vipid-logo.5.svg';
 
 const DEFAULT_SIZE_LOGO = 25;
 

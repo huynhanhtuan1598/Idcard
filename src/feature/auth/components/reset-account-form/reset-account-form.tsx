@@ -9,9 +9,9 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import * as yup from 'yup';
 import { useAuth } from '../../../../components/context/auth';
-import { AUTH_CODE_EXIST, AUTH_CODE_NOT_EXIST, AUTH_EMAIL_EXIST, AUTH_USERNAME_EXIST } from '../../../../components/error-code/auth';
+// import { AUTH_CODE_EXIST, AUTH_CODE_NOT_EXIST, AUTH_EMAIL_EXIST, AUTH_USERNAME_EXIST } from '../../../../components/error-code/auth';
 import { MUTATION_RESET_ACCOUNT } from '../../../../components/query/auth';
-import { getErrorMessage } from '../../../../components/utils/getMessageError';
+// import { getErrorMessage } from '../../../../components/utils/getMessageError';
 import { Button } from '../button/button';
 import { ErrorText } from '../error-text/error-text';
 import { InputPassword } from '../input-password/input-password';
@@ -118,163 +118,163 @@ const ResetAccountForm = ({ callback, profile, id }: Props) => {
     const password = useRef({});
     password.current = watch('password', '');
 
-    const [resetAccount, { loading }] = useMutation(MUTATION_RESET_ACCOUNT, {
-        onError: (err) => {
-            const getFieldError = () => {
-                if ([AUTH_EMAIL_EXIST.code].includes(err.message)) {
-                    setFieldError('email');
-                }
+    // const [resetAccount, { loading }] = useMutation(MUTATION_RESET_ACCOUNT, {
+    //     onError: (err) => {
+    //         const getFieldError = () => {
+    //             if ([AUTH_EMAIL_EXIST.code].includes(err.message)) {
+    //                 setFieldError('email');
+    //             }
 
-                if (
-                    [AUTH_CODE_EXIST.code, AUTH_CODE_NOT_EXIST.code].includes(
-                        err.message
-                    )
-                ) {
-                    setFieldError('code');
-                }
+    //             if (
+    //                 [AUTH_CODE_EXIST.code, AUTH_CODE_NOT_EXIST.code].includes(
+    //                     err.message
+    //                 )
+    //             ) {
+    //                 setFieldError('code');
+    //             }
 
-                if ([AUTH_USERNAME_EXIST.code].includes(err.message)) {
-                    setFieldError('username');
-                }
-            };
+    //             if ([AUTH_USERNAME_EXIST.code].includes(err.message)) {
+    //                 setFieldError('username');
+    //             }
+    //         };
 
-            getFieldError();
+    //         getFieldError();
 
-            enqueueSnackbar(getErrorMessage(err.message), { variant: 'error' });
-        },
-    });
+    //         // enqueueSnackbar(getErrorMessage(err.message), { variant: 'error' });
+    //     },
+    // });
 
-    const onSubmit = handleSubmit((values) => {
-        resetAccount({
-            variables: {
-                ...pick(values, [
-                    'email',
-                    'fullname',
-                    'username',
-                    'code',
-                    'password',
-                ]),
-                id,
-            },
-        })
-            .then((data) => {
-                loadUserSuccess(data.data.resetAccount);
-                localStorage.setItem('token', data.data.resetAccount.token);
-                enqueueSnackbar('Đăng ký tài khoản thành công', {
-                    variant: 'success',
-                });
-                setTimeout(() => {
-                    callback();
-                }, 500);
-            })
-            .catch(() => {});
-    });
+    // const onSubmit = handleSubmit((values) => {
+    //     resetAccount({
+    //         variables: {
+    //             ...pick(values, [
+    //                 'email',
+    //                 'fullname',
+    //                 'username',
+    //                 'code',
+    //                 'password',
+    //             ]),
+    //             id,
+    //         },
+    //     })
+    //         .then((data) => {
+    //             loadUserSuccess(data.data.resetAccount);
+    //             localStorage.setItem('token', data.data.resetAccount.token);
+    //             enqueueSnackbar('Đăng ký tài khoản thành công', {
+    //                 variant: 'success',
+    //             });
+    //             setTimeout(() => {
+    //                 callback();
+    //             }, 500);
+    //         })
+    //         .catch(() => {});
+    // });
 
-    return (
-        <form autoComplete="off" onSubmit={onSubmit}>
-            <Grid container direction="column" spacing={2}>
-                <Grid item>
-                    <Input
-                        placeholder="Email"
-                        {...register('email')}
-                        defaultValue={get(profile, 'email')}
-                        error={fieldError === 'email'}
-                    />
-                    <ErrorMessage
-                        name="email"
-                        errors={errors}
-                        render={({ message }) => {
-                            return <ErrorText message={message} />;
-                        }}
-                    />
-                </Grid>
-                <Grid item>
-                    <Input
-                        placeholder={t('form.username')}
-                        {...register('username')}
-                        error={fieldError === 'username'}
-                    />
-                    <ErrorMessage
-                        name="username"
-                        errors={errors}
-                        render={({ message }) => {
-                            return <ErrorText message={message} />;
-                        }}
-                    />
-                </Grid>
-                <Grid item>
-                    <Input
-                        placeholder={t('form.fullname')}
-                        {...register('fullname')}
-                        defaultValue={get(profile, 'name')}
-                        error={fieldError === 'fullname'}
-                    />
-                    <ErrorMessage
-                        name="fullname"
-                        errors={errors}
-                        render={({ message }) => {
-                            return <ErrorText message={message} />;
-                        }}
-                    />
-                </Grid>
-                <Grid item>
-                    <Input
-                        placeholder={t('form.code_confirm')}
-                        {...register('code')}
-                        defaultValue={get(profile, 'code')}
-                        error={fieldError === 'code'}
-                    />
-                    <ErrorMessage
-                        name="code"
-                        errors={errors}
-                        render={({ message }) => {
-                            return <ErrorText message={message} />;
-                        }}
-                    />
-                </Grid>
-                <Grid item>
-                    <InputPassword
-                        placeholder={t('form.password')}
-                        {...register('password')}
-                        error={fieldError === 'password'}
-                    />
-                    <ErrorMessage
-                        name="password"
-                        errors={errors}
-                        render={({ message }) => {
-                            return <ErrorText message={message} />;
-                        }}
-                    />
-                </Grid>
-                <Grid item>
-                    <InputPassword
-                        placeholder={t('form.password_confirm')}
-                        {...register('passwordConfirm')}
-                        error={fieldError === 'passwordConfirm'}
-                    />
-                    <ErrorMessage
-                        name="passwordConfirm"
-                        errors={errors}
-                        render={({ message }) => {
-                            return <ErrorText message={message} />;
-                        }}
-                    />
-                </Grid>
-                <Grid item />
-                <Grid item>
-                    <Button
-                        type="submit"
-                        color="primary"
-                        variant="contained"
-                        fullWidth
-                        loading={loading}
-                    >
-                        {t('signup')}
-                    </Button>
-                </Grid>
-            </Grid>
-        </form>
-    );
+    // return (
+    //     <form autoComplete="off" onSubmit={onSubmit}>
+    //         <Grid container direction="column" spacing={2}>
+    //             <Grid item>
+    //                 <Input
+    //                     placeholder="Email"
+    //                     {...register('email')}
+    //                     defaultValue={get(profile, 'email')}
+    //                     error={fieldError === 'email'}
+    //                 />
+    //                 <ErrorMessage
+    //                     name="email"
+    //                     errors={errors}
+    //                     render={({ message }) => {
+    //                         return <ErrorText message={message} />;
+    //                     }}
+    //                 />
+    //             </Grid>
+    //             <Grid item>
+    //                 <Input
+    //                     placeholder={t('form.username')}
+    //                     {...register('username')}
+    //                     error={fieldError === 'username'}
+    //                 />
+    //                 <ErrorMessage
+    //                     name="username"
+    //                     errors={errors}
+    //                     render={({ message }) => {
+    //                         return <ErrorText message={message} />;
+    //                     }}
+    //                 />
+    //             </Grid>
+    //             <Grid item>
+    //                 <Input
+    //                     placeholder={t('form.fullname')}
+    //                     {...register('fullname')}
+    //                     defaultValue={get(profile, 'name')}
+    //                     error={fieldError === 'fullname'}
+    //                 />
+    //                 <ErrorMessage
+    //                     name="fullname"
+    //                     errors={errors}
+    //                     render={({ message }) => {
+    //                         return <ErrorText message={message} />;
+    //                     }}
+    //                 />
+    //             </Grid>
+    //             <Grid item>
+    //                 <Input
+    //                     placeholder={t('form.code_confirm')}
+    //                     {...register('code')}
+    //                     defaultValue={get(profile, 'code')}
+    //                     error={fieldError === 'code'}
+    //                 />
+    //                 <ErrorMessage
+    //                     name="code"
+    //                     errors={errors}
+    //                     render={({ message }) => {
+    //                         return <ErrorText message={message} />;
+    //                     }}
+    //                 />
+    //             </Grid>
+    //             <Grid item>
+    //                 <InputPassword
+    //                     placeholder={t('form.password')}
+    //                     {...register('password')}
+    //                     error={fieldError === 'password'}
+    //                 />
+    //                 <ErrorMessage
+    //                     name="password"
+    //                     errors={errors}
+    //                     render={({ message }) => {
+    //                         return <ErrorText message={message} />;
+    //                     }}
+    //                 />
+    //             </Grid>
+    //             <Grid item>
+    //                 <InputPassword
+    //                     placeholder={t('form.password_confirm')}
+    //                     {...register('passwordConfirm')}
+    //                     error={fieldError === 'passwordConfirm'}
+    //                 />
+    //                 <ErrorMessage
+    //                     name="passwordConfirm"
+    //                     errors={errors}
+    //                     render={({ message }) => {
+    //                         return <ErrorText message={message} />;
+    //                     }}
+    //                 />
+    //             </Grid>
+    //             <Grid item />
+    //             <Grid item>
+    //                 <Button
+    //                     type="submit"
+    //                     color="primary"
+    //                     variant="contained"
+    //                     fullWidth
+    //                     loading={loading}
+    //                 >
+    //                     {t('signup')}
+    //                 </Button>
+    //             </Grid>
+    //         </Grid>
+    //     </form>
+    // );
 };
 
 export { ResetAccountForm };

@@ -1,6 +1,8 @@
 import PublicIcon from '@mui/icons-material/Public';
 import React from 'react';
-import email from '../assets/mail.svg';
+// import email from '../assets/mail.svg';
+import email from './img/free-mail-icon-142-thumb.png'
+
 
 export const websiteList: {
     [key: string]: {

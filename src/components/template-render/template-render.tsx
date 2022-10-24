@@ -10,7 +10,7 @@ import reactStringReplace from 'react-string-replace';
 // import { ThemeConfig, UserInfoFragment } from '../../generated/graphql';
 // import { getHtmlList } from '../utils';
 // import { CompLoadFont } from '../comp-load-font';
-import avatarBlank from './assets/avatar-blank.jpeg';
+// import avatarBlank from './assets/avatar-blank.jpeg';
 import { BackgroundImage } from './background-image';
 import { DownloadFile } from './download';
 import { getHtmlList } from '../utils/getTemplate';
@@ -65,7 +65,7 @@ const TemplateRender = ({
 
         const value = template;
 
-        const imageAvatar = get(profile, 'avatarS3.url') || avatarBlank;
+        const imageAvatar = get(profile, 'avatarS3.url') || '';
 
         let formatTempale = reactStringReplace(
             value,

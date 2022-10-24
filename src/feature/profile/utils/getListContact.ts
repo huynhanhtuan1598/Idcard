@@ -1,5 +1,5 @@
 import {bankLists } from '../../../feature/profile/constants/bank-list';
-import {socialLists} from '../../../feature/profile/constants/social-list';
+// import {socialLists} from '../../../feature/profile/constants/social-list';
 import {emailList} from '../../../feature/profile/constants/email-list';
 import {phoneList} from '../../../feature/profile/constants/phone-list';
 import {servicesList } from '../../../feature/profile/constants/services-list';
@@ -49,5 +49,5 @@ export function getListContact(type: ETypeContact) {
         return ecommerceList;
     }
 
-    return socialLists;
+    // return socialLists;
 }

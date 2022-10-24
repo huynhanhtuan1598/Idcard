@@ -15,7 +15,6 @@ import {
     User,
 } from '../generated/graphql';
 import { Splash } from '../splash/splash';
-// import { IAction } from './interface';
 interface IState {
     loading: boolean;
     isAuth: boolean;
